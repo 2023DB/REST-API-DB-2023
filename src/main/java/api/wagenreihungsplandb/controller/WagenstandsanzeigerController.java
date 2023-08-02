@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * REST Controller for Wagenstandsanzeiger application.
+ * REST Controller for the Wagenstandsanzeiger application.
+ * Handles requests related to Gleisabschnitte (sections) for trains at specific stations.
  */
 @RestController
 @RequestMapping("/station")
@@ -22,7 +23,7 @@ public class WagenstandsanzeigerController {
     }
 
     /**
-     * Get Gleisabschnitte (sections) for given Ril100, train number, and wagen number.
+     * Get Gleisabschnitte (sections) for a given Ril100, train number, and wagen number.
      *
      * @param ril100      Ril100 code of the station.
      * @param trainNumber Train number.
@@ -35,7 +36,6 @@ public class WagenstandsanzeigerController {
             @PathVariable int trainNumber,
             @PathVariable int wagenNumber
     ) {
-
         WagenstandsanzeigerResponse response = wagenstandService.getGleisabschnitte(ril100, trainNumber, wagenNumber);
         if (response == null) {
             return ResponseEntity.notFound().build();
